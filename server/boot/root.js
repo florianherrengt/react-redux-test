@@ -47,7 +47,8 @@ function root(server) {
                     fetchData = () => { return new Promise((resolve) => { resolve(); }); };
                 }
                 fetchData().then((componentData) => {
-                    const store = configureStore(componentData);
+                    const store = configureStore();
+                    store.dispatch(componentData);
                     const html = React.renderToString(
                         <Provider store={store}>
                             { () => <Component /> }

@@ -23,6 +23,7 @@
     "express": "^4.13.3",
     "fbjs": "^0.2.1",
     "history": "^1.11.1",
+    "immutable": "^3.7.5",
     "loopback": "^2.22.2",
     "loopback-boot": "^2.12.2",
     "loopback-component-explorer": "^2.1.0",

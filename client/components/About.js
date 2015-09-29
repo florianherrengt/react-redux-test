@@ -6,19 +6,6 @@ class About extends Component {
   componentDidMount() {
     this.props.showSomething();
   }
-  joshFetch() {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve({
-          about: [ {
-              title: 'hello'
-          }, {
-              title: 'josh'
-          } ]
-        });
-      }, 1000);
-    });
-  }
   render() {
     return (
       <div>
