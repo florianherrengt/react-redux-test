@@ -34,8 +34,6 @@ class About extends Component {
           iconClassNameRight="muidocs-icon-navigation-expand-more" />
         <p onClick={ this.props.showSomething }>
           { this.props.about ? 'Got it!' : 'Click here to show about' }
-          <br />
-          Props: { JSON.stringify(this.props) }
         </p>
         {() => {
           if (this.props.about) {

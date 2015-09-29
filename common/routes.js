@@ -1,5 +1,5 @@
-import App from '../containers/App';
-import About from '../containers/About';
+import App from '../client/containers/App';
+import About from '../client/containers/About';
 
 const routes = [ {
     path: '/',

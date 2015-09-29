@@ -5,11 +5,10 @@ const express = require('express');
 const app = express();
 const compiler = webpack(config);
 const port = 3000;
-
 app.use(webpackDevMiddleware(compiler, { publicPath: config.output.publicPath }));
 
 import { createLocation } from 'history';
-import configureStore from './store/configureStore';
+import configureStore from './client/store/configureStore';
 import { match } from 'react-router';
 import { Provider } from 'react-redux';
 import routes from './common/routes';
