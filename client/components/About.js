@@ -2,14 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { RaisedButton, AppBar, Styles } from 'material-ui';
 import { fetchData } from '../actions/about';
 
-const ThemeManager = new Styles.ThemeManager();
-
 class About extends Component {
-  getChildContext() {
-    return {
-      muiTheme: ThemeManager.getCurrentTheme()
-    };
-  }
   componentDidMount() {
     this.props.showSomething();
   }
@@ -47,10 +40,6 @@ class About extends Component {
     );
   }
 }
-
-About.childContextTypes = {
-  muiTheme: React.PropTypes.object
-};
 
 About.fetchData = fetchData;
 
