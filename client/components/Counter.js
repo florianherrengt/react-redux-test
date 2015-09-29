@@ -1,8 +1,10 @@
 import React, { Component, PropTypes } from 'react';
+import { fetchData } from '../actions/counter';
 import { Link } from 'react-router';
 
 class Counter extends Component {
   render() {
+    console.log('render Counter');
     const { increment, incrementIfOdd, incrementAsync, decrement, counter } = this.props;
     return (
       <p>
@@ -20,6 +22,8 @@ class Counter extends Component {
     );
   }
 }
+
+Counter.fetchData = fetchData;
 
 Counter.propTypes = {
   increment: PropTypes.func.isRequired,

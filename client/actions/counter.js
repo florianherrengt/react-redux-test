@@ -32,3 +32,9 @@ export function incrementAsync(delay = 1000) {
     }, delay);
   };
 }
+
+export function fetchData() {
+  return new Promise((resolve) => {
+    resolve({ type: 'FETCH_DATA_COUNTER' });
+  });
+}

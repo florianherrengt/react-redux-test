@@ -44,19 +44,26 @@ function root(server) {
                 const Component = renderProps.routes[ 0 ].component;
                 let fetchData = renderProps.components[ 0 ].WrappedComponent.fetchData;
                 if (!fetchData) {
-                    fetchData = () => { return new Promise((resolve) => { resolve(); }); };
+                    fetchData = () => { return new Promise((resolve) => { resolve([]); }); };
                 }
                 fetchData().then((componentData) => {
                     const store = configureStore();
+                    console.log('componentData', componentData);
                     store.dispatch(componentData);
+                    console.log('store.getState() from server', store.getState());
                     const html = React.renderToString(
                         <Provider store={store}>
                             { () => <Component /> }
                         </Provider>
                     );
                     response.send(renderHtml(html, store.getState()));
+                }, () => {
+                    console.log('fetchData from server failed');
                 });
-            } else { return next(); }
+            } else { 
+                console.log('No renderProps found');
+                return next(); 
+            }
         });
     });
 }
