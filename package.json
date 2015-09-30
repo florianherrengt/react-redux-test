@@ -1,9 +1,10 @@
 {
-  "name": "redux-counter-example",
+  "name": "redux-example",
   "version": "0.0.0",
-  "description": "Redux counter example",
+  "description": "Redux example",
+  "main": "server/server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node server/server.js",
     "test": "mocha --recursive --compilers js:babel-core/register",
     "test:watch": "npm test -- --watch"
   },
@@ -18,6 +19,7 @@
   "homepage": "http://rackt.github.io/redux",
   "dependencies": {
     "babel": "^5.8.23",
+    "babel-core": "^5.8.25",
     "compression": "^1.5.2",
     "cors": "^2.7.1",
     "express": "^4.13.3",
