@@ -1,1 +1,1 @@
-web: npm start
+web: ENV=heroku npm start
