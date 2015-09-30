@@ -57,8 +57,9 @@ function root(server) {
                         </Provider>
                     );
                     response.send(renderHtml(html, store.getState()));
-                }, () => {
-                    console.log('fetchData from server failed');
+                }).catch((error) => {
+                    response.json(error);
+                    console.log('fetchData from server failed', JSON.stringify(error));
                 });
             } else { 
                 console.log('No renderProps found');

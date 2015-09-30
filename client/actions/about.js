@@ -1,5 +1,6 @@
 import request from 'superagent';
 import { appUrl } from '../../common/config';
+import api from '../../common/api';
 
 export const SHOW_SOMETHING = 'SHOW_SOMETHING';
 
@@ -23,14 +24,11 @@ export function showSomething() {
 export function fetchData() {
   console.log('fetchData called');
   console.log(`${appUrl}/api/dumbs`);
-  return new Promise((resolve) => {
-    request
-        .get(`${appUrl}/api/dumbs`)
-        .end((error, response) => {
-            resolve({
-                type: 'FETCH_DATA_ABOUT',
-                data: response.body
-            });
-        });
-  });
+  return api(`${appUrl}/api/dumbs`)
+    .then((data) => {
+        return {
+            type: 'FETCH_DATA_ABOUT',
+            data
+        };
+    });
 }
