@@ -8,14 +8,9 @@ export function showSomething() {
   return (dispatch, getState, store) => {
       console.log('load data client side', getState());
       if (getState().about === null) {
-        fetchData().then(({ data }) => {
+        fetchData().then((responseData) => {
           console.log('fetched from client side');
-          console.log({data});
-          data.push({ title: 'from redux client side'});
-          dispatch({
-            type: 'FETCH_DATA_ABOUT',
-            data
-          });
+          dispatch(responseData);
         });
       }
   };
