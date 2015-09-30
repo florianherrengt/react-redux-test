@@ -4,7 +4,7 @@ export const SHOW_SOMETHING = 'SHOW_SOMETHING';
 export function showSomething() {
   return (dispatch, getState, store) => {
       console.log('load data client side', getState());
-      if (!getState().about || getState().about.length === 0) {
+      if (getState().about === null) {
         fetchData().then(({ data }) => {
           console.log('fetched from client side');
           console.log({data});

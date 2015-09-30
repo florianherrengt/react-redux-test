@@ -9,7 +9,7 @@ export default function data(state = null, action) {
 			return data;
 		case 'FETCH_DATA_ABOUT':
 			console.log('reducer:about:FETCH_DATA_ABOUT', { data });
-			return data;
+			return fromJS(data);
 		default:
 			return state;
 	}

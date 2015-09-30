@@ -18,7 +18,7 @@ class About extends Component {
         {() => {
           if (this.props.about) {
             return this.props.about.map((item, index) => {
-              return <div key={index}>{ item.title }</div>;
+              return <div key={index}>{ item.get('title') }</div>;
             });
           }
         }()}
