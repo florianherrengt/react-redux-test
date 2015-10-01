@@ -39,7 +39,7 @@ function root(server) {
     server.use((request, response, next) => {
         const location = createLocation(request.url);
         match({ routes, location }, (error, redirectLocation, renderProps) => {
-        if (error) { throw new Error(error); }
+            if (error) { throw new Error(error); }
             if (renderProps) {
                 const Component = renderProps.routes[ 0 ].component;
                 let fetchData = renderProps.components[ 0 ].WrappedComponent.fetchData;
@@ -47,8 +47,17 @@ function root(server) {
                     fetchData = () => { return new Promise((resolve) => { resolve([]); }); };
                 }
                 fetchData().then((componentData) => {
-                    const store = configureStore();
                     console.log('componentData', componentData);
+                    if(componentData.data && componentData.data.error) {
+                        console.log('componentData.data.error', componentData.data.error);
+                        if (componentData.data.error.status === 401) {
+                            response.redirect('/');
+                        }
+                        return response
+                            .status(componentData.error.status)
+                            .json(componentData.error);
+                    }
+                    const store = configureStore();
                     store.dispatch(componentData);
                     console.log('store.getState() from server', store.getState());
                     const html = React.renderToString(
@@ -58,8 +67,7 @@ function root(server) {
                     );
                     response.send(renderHtml(html, store.getState()));
                 }).catch((error) => {
-                    response.json(error);
-                    console.log('fetchData from server failed', JSON.stringify(error));
+                    return response.sendStatus(501);
                 });
             } else { 
                 console.log('No renderProps found');

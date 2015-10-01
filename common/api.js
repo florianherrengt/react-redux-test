@@ -2,18 +2,18 @@ require('isomorphic-fetch');
 
 export default (url, options) => {
 	return fetch(url, options)
-		.then(function(response) {
-	        if (response.status >= 400) {
-	            throw new Error("Bad response from server");
-	        }
-	        throw {
-	        	a: 1
-	        }
-	        // if (typeof window === 'object')
-	        // 	window.location = '/';
-	        // else
+		.then((response) => {
 	        return response.json();
-	    }).catch(function(error) {
-		    console.log('request failed', error)
-		});
+	    })
+	    .then(data => {
+	    	console.log(data);
+	    	if (typeof window !== 'undefined') {
+	    		if (data.error) {
+	    			if (data.error.status === 401) {
+	    				return window.location = '/';
+	    			}
+	    		}
+	    	}
+	    	return data;
+	    });
 };

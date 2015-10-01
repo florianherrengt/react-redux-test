@@ -3,7 +3,7 @@ import { Router, Route } from 'react-router';
 import { Provider } from 'react-redux';
 import routes from '../common/routes';
 import configureStore from './store/configureStore';
-import { createHistory } from 'history'; // you need to install this package
+import { createHistory } from 'history';
 import { fromJS } from 'immutable';
 
 let history = createHistory();

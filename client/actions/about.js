@@ -18,12 +18,13 @@ export function showSomething() {
 
 export function fetchData() {
   console.log('fetchData called');
-  console.log(`${appUrl}/api/dumbs`);
-  return api(`${appUrl}/api/dumbs`)
+  // console.log(`${appUrl}/api/dumbs`);
+  return api(`${appUrl}/api/Users`)
     .then((data) => {
-        return {
-            type: 'FETCH_DATA_ABOUT',
-            data
-        };
+      console.log('fetch data', data);
+      return {
+          type: 'FETCH_DATA_ABOUT',
+          data
+      };
     });
 }
