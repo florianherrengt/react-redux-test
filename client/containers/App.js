@@ -1,18 +1,20 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import Counter from '../components/Counter';
-import * as CounterActions from '../actions/counter';
+import App from '../components/App';
+import * as AppActions from '../actions/app';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
 
 function mapStateToProps(state) {
-	console.log('mapStateToProps:counter', state);
+	console.log('mapStateToProps:app', state);
   return {
-    counter: state.counter
+    app: state.app
   };
 }
 
 function mapDispatchToProps(dispatch) {
 	console.log('mapDispatchToProps:action', dispatch);
-  return bindActionCreators(CounterActions, dispatch);
+  return bindActionCreators(AppActions, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Counter);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

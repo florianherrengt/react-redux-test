@@ -6,7 +6,7 @@ const compiler = webpack(config);
 import React from 'react';
 import { createLocation } from 'history';
 import configureStore from '../../client/store/configureStore';
-import { match } from 'react-router';
+import { match, RoutingContext } from 'react-router';
 import { Provider } from 'react-redux';
 import routes from '../../common/routes';
 
@@ -14,6 +14,7 @@ function renderHtml(html, initialState) {
     return `<!DOCTYPE html>
     <html>
       <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <title>Redux counter example</title>
       </head>
       <body>
@@ -23,7 +24,7 @@ function renderHtml(html, initialState) {
         <script>
           window.__INITIAL_STATE__ = ${JSON.stringify(initialState)};
         </script>
-        <script src="/static/bundle.js"></script>
+        <script src="/client/dist/bundle.js"></script>
       </body>
     </html>`;
 }
@@ -42,7 +43,7 @@ function root(server) {
             if (error) { throw new Error(error); }
             if (renderProps) {
                 const Component = renderProps.routes[ 0 ].component;
-                let fetchData = renderProps.components[ 0 ].WrappedComponent.fetchData;
+                let fetchData = renderProps.components[ 1 ].WrappedComponent.fetchData;
                 if (!fetchData) {
                     fetchData = () => { return new Promise((resolve) => { resolve([]); }); };
                 }
@@ -62,7 +63,7 @@ function root(server) {
                     console.log('store.getState() from server', store.getState());
                     const html = React.renderToString(
                         <Provider store={store}>
-                            { () => <Component /> }
+                            { () => <RoutingContext { ...renderProps } /> }
                         </Provider>
                     );
                     response.send(renderHtml(html, store.getState()));

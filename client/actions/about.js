@@ -19,7 +19,7 @@ export function showSomething() {
 export function fetchData() {
   console.log('fetchData called');
   // console.log(`${appUrl}/api/dumbs`);
-  return api(`${appUrl}/api/Users`)
+  return api(`${appUrl}/api/dumbs`)
     .then((data) => {
       console.log('fetch data', data);
       return {

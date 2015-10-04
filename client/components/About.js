@@ -9,9 +9,6 @@ class About extends Component {
   render() {
     return (
       <div>
-        <AppBar
-          title="Title"
-          iconClassNameRight="muidocs-icon-navigation-expand-more" />
         <p onClick={ this.props.showSomething }>
           { this.props.about ? 'Got it!' : 'Click here to show about' }
         </p>
