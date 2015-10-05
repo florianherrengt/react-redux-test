@@ -3,18 +3,23 @@ import { fetchData } from '../actions/signin';
 import { ButtonInput } from 'react-bootstrap';
 
 class Signin extends Component {
+	onChange(event) {
+		event.preventDefault();
+		this.props[event.currentTarget.name] = event.currentTarget.value;
+	}
 	onSubmit(event) {
 		event.preventDefault();
-		console.log(event);
+		const { email, password } = this.props;
+		this.props.doSignup({ email, password });
 	}
 	render() {
 		return (
 		  	<div>
-		  		<form onSubmit={this.onSubmit}>
+		  		<form onSubmit={this.onSubmit.bind(this)}>
 		      		<p>Username:</p>
-		      		<input type="text" />
+		      		<input onChange={this.onChange.bind(this)} name="email" type="text" />
 		      		<p>Password:</p>
-		      		<input type="text" />
+		      		<input onChange={this.onChange.bind(this)} type="text" name="password" />
 		      		<ButtonInput type="submit" value="Submit Button" />
 		  		</form>
 		  	</div>

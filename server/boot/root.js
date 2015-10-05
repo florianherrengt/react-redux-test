@@ -38,6 +38,7 @@ function root(server) {
     server.use(router);
 
     server.use((request, response, next) => {
+        console.log('request.body', request.body);
         const location = createLocation(request.url);
         match({ routes, location }, (error, redirectLocation, renderProps) => {
             if (error) { throw new Error(error); }

@@ -1,6 +1,13 @@
 require('isomorphic-fetch');
 
 export default (url, options) => {
+	Object.assign(options, {
+		headers: {
+			'Accept': 'application/json',
+			'Content-Type': 'application/json'
+		}
+	});
+	console.log('API call:', url, options);
 	return fetch(url, options)
 		.then((response) => {
 	        return response.json();
