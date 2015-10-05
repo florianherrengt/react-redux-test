@@ -3,6 +3,8 @@ import webpackDevMiddleware from 'webpack-dev-middleware';
 import config from '../../webpack.config';
 const compiler = webpack(config);
 
+import loopback from 'loopback';
+import cookieParser from 'cookie-parser';
 import React from 'react';
 import { createLocation } from 'history';
 import configureStore from '../../client/store/configureStore';
@@ -32,12 +34,15 @@ function renderHtml(html, initialState) {
 function root(server) {
     const router = server.loopback.Router();
     router.get('/check-server-status', server.loopback.status());
-
     router.use(webpackDevMiddleware(compiler, { publicPath: config.output.publicPath }));
-
+    server.use(cookieParser());
+    server.use(loopback.token({ model: server.models.AccessToken, currentUserLiteral: 'me' }));
+    console.log('server.models.Dump.Validate', server.models.Dumb.validations);
     server.use(router);
 
     server.use((request, response, next) => {
+        console.log('request.cookies', request.cookies);
+        const token = request.cookies.Authorization;
         console.log('request.body', request.body);
         const location = createLocation(request.url);
         match({ routes, location }, (error, redirectLocation, renderProps) => {
@@ -48,7 +53,7 @@ function root(server) {
                 if (!fetchData) {
                     fetchData = () => { return new Promise((resolve) => { resolve([]); }); };
                 }
-                fetchData().then((componentData) => {
+                fetchData({ token }).then((componentData) => {
                     console.log('componentData', componentData);
                     if(componentData.data && componentData.data.error) {
                         console.log('componentData.data.error', componentData.data.error);
@@ -71,9 +76,9 @@ function root(server) {
                 }).catch((error) => {
                     return response.sendStatus(501);
                 });
-            } else { 
+            } else {
                 console.log('No renderProps found');
-                return next(); 
+                return next();
             }
         });
     });

@@ -21,6 +21,7 @@
     "babel": "^5.8.23",
     "babel-core": "^5.8.25",
     "compression": "^1.5.2",
+    "cookie-parser": "^1.4.0",
     "cors": "^2.7.1",
     "express": "^4.13.3",
     "fbjs": "^0.2.1",

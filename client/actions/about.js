@@ -16,15 +16,18 @@ export function showSomething() {
   };
 }
 
-export function fetchData() {
+export function fetchData({ token } = {}) {
   console.log('fetchData called');
   // console.log(`${appUrl}/api/dumbs`);
-  return api(`${appUrl}/api/dumbs`)
+  return api(`${appUrl}/api/Users/me`, { token })
     .then((data) => {
       console.log('fetch data', data);
+      if (data.error) {
+        return { data };
+      }
       return {
           type: 'FETCH_DATA_ABOUT',
-          data
+          data: [ { title: data.email } ]
       };
     });
 }
