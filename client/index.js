@@ -9,10 +9,10 @@ import { fromJS } from 'immutable';
 const history = createHistory();
 
 const initialState = window.__INITIAL_STATE__;
-Object.keys(initialState).forEach(function (key) {
-  	initialState[key] = fromJS(initialState[key]);
- 	 // do something with obj
-});
+// Object.keys(initialState).forEach(function (key) {
+//   	initialState[key] = fromJS(initialState[key]);
+//  	 // do something with obj
+// });
 const store = configureStore(initialState);
 React.render(
   <Provider store={store}>

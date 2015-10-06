@@ -6,7 +6,8 @@ import * as LandingActions from '../actions/landing';
 function mapStateToProps(state) {
     // console.log('mapStateToProps:landing', state);
     return {
-        landing: state.landing
+        landing: state.landing,
+        locales: state.locales
     };
 }
 

@@ -52,6 +52,10 @@ function root(server) {
                     const store = configureStore({
                         signin: token
                     });
+                    store.dispatch({
+                        type: 'SET_LANG',
+                        lang: request.locale
+                    });
                     store.dispatch(componentData);
                     console.log('store.getState() from server', store.getState());
                     const html = React.renderToString(

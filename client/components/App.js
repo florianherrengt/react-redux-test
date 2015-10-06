@@ -19,13 +19,15 @@ class App extends Component {
         );
         return (
             <div>
-                <Navbar brand="React-Bootstrap">
-                    <Nav navbar right>
-                        { this.props.signin ? accountBtn : signinBtn }
-                    </Nav>
-                </Navbar>
+                {
+                // <Navbar brand="React-Bootstrap">
+                //     <Nav navbar right>
+                //         { this.props.signin ? accountBtn : signinBtn }
+                //     </Nav>
+                // </Navbar>
+                }
                 <div>{ this.props.children }</div>
-          </div>
+            </div>
         );
     }
 }

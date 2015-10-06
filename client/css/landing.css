@@ -1,17 +1,3 @@
-/*#hero {
-    width: 100%;
-    background-color: red;
-    height: 300px;
-    margin-top: -20px;
+body {
+    font-family: 'Josefin Sans', sans-serif;
 }
-
-#hero > div {
-    width: 100%;
-}
-
-.vertical-center {
-  display: flex;
-  align-items: center;
-}
-
-*/
