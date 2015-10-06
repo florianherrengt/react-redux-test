@@ -2,8 +2,9 @@ import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
 import App from '../client/containers/App';
+import Landing from '../client/containers/Landing';
 import About from '../client/containers/About';
-import Counter from '../client/containers/Counter';
+// import Counter from '../client/containers/Counter';
 import Signin from '../client/containers/Signin';
 
 // const routes = [ {
@@ -16,7 +17,7 @@ import Signin from '../client/containers/Signin';
 
 const routes = (
 	<Route path="/" component={App}>
-		<IndexRoute component={Counter} />
+		<IndexRoute component={Landing} />
       	<Route path="about" component={About} />
       	<Route path="signin" component={Signin} />
     </Route>

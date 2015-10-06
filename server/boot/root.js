@@ -5,43 +5,27 @@ const compiler = webpack(config);
 
 import loopback from 'loopback';
 import cookieParser from 'cookie-parser';
+import locale from 'locale';
 import React from 'react';
 import { createLocation } from 'history';
 import configureStore from '../../client/store/configureStore';
 import { match, RoutingContext } from 'react-router';
 import { Provider } from 'react-redux';
 import routes from '../../common/routes';
-
-function renderHtml(html, initialState) {
-    return `<!DOCTYPE html>
-    <html>
-      <head>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-        <title>Redux counter example</title>
-        <meta name='viewport' content='width=device-width, user-scalable=no' />
-      </head>
-      <body>
-        <div id="root">
-            ${html}
-        </div>
-        <script>
-          window.__INITIAL_STATE__ = ${JSON.stringify(initialState)};
-        </script>
-        <script src="/dist/bundle.js"></script>
-      </body>
-    </html>`;
-}
+import renderHtml from '../../client/index.html';
 
 function root(server) {
     const router = server.loopback.Router();
     router.get('/check-server-status', server.loopback.status());
     // router.use(webpackDevMiddleware(compiler, { publicPath: config.output.publicPath }));
     server.use(cookieParser());
+    server.use(locale([ 'fr', 'en' ]));
     server.use(loopback.token({ model: server.models.AccessToken, currentUserLiteral: 'me' }));
     console.log('server.models.Dump.Validate', server.models.Dumb.validations);
     server.use(router);
 
     server.use((request, response, next) => {
+        console.log('request.locale', request.locale);
         console.log('request.cookies', request.cookies);
         const token = request.cookies.Authorization;
         console.log('request.body', request.body);

@@ -29,6 +29,7 @@
     "history": "^1.11.1",
     "immutable": "^3.7.5",
     "isomorphic-fetch": "^2.1.1",
+    "locale": "0.0.20",
     "loopback": "^2.22.2",
     "loopback-boot": "^2.12.2",
     "loopback-component-explorer": "^2.1.0",

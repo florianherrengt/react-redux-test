@@ -24,9 +24,7 @@ class App extends Component {
                         { this.props.signin ? accountBtn : signinBtn }
                     </Nav>
                 </Navbar>
-                <div className="container">
-                    <div>{ this.props.children }</div>
-                </div>
+                <div>{ this.props.children }</div>
           </div>
         );
     }

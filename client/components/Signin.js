@@ -14,7 +14,7 @@ class Signin extends Component {
     }
     render() {
         return (
-            <div>
+            <div className="container">
                 <form onSubmit={this.onSubmit.bind(this)}>
                     <p>Username:</p>
                     <input onChange={this.onChange.bind(this)} name="email" type="text" />
