@@ -18,6 +18,7 @@ function renderHtml(html, initialState) {
       <head>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <title>Redux counter example</title>
+        <meta name='viewport' content='width=device-width, user-scalable=no' />
       </head>
       <body>
         <div id="root">
@@ -26,7 +27,7 @@ function renderHtml(html, initialState) {
         <script>
           window.__INITIAL_STATE__ = ${JSON.stringify(initialState)};
         </script>
-        <script src="/client/dist/bundle.js"></script>
+        <script src="/dist/bundle.js"></script>
       </body>
     </html>`;
 }
@@ -34,7 +35,7 @@ function renderHtml(html, initialState) {
 function root(server) {
     const router = server.loopback.Router();
     router.get('/check-server-status', server.loopback.status());
-    router.use(webpackDevMiddleware(compiler, { publicPath: config.output.publicPath }));
+    // router.use(webpackDevMiddleware(compiler, { publicPath: config.output.publicPath }));
     server.use(cookieParser());
     server.use(loopback.token({ model: server.models.AccessToken, currentUserLiteral: 'me' }));
     console.log('server.models.Dump.Validate', server.models.Dumb.validations);
@@ -64,7 +65,9 @@ function root(server) {
                             .status(componentData.error.status)
                             .json(componentData.error);
                     }
-                    const store = configureStore();
+                    const store = configureStore({
+                        signin: token
+                    });
                     store.dispatch(componentData);
                     console.log('store.getState() from server', store.getState());
                     const html = React.renderToString(
@@ -74,7 +77,8 @@ function root(server) {
                     );
                     response.send(renderHtml(html, store.getState()));
                 }).catch((error) => {
-                    return response.sendStatus(501);
+                    console.log(error);
+                    return response.sendStatus(500);
                 });
             } else {
                 console.log('No renderProps found');
