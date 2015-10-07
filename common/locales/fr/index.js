@@ -1,3 +1,3 @@
-export default {
-	heroHeader: 'PROCHAINEMENT'
-}
+import landing from './landing';
+
+export default { landing };

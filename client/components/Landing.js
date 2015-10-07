@@ -20,7 +20,8 @@ const styles = {
     },
     feature: {
         content: {
-            margin: '40px'
+            margin: '40px',
+            lineHeight: '23px'
         },
         col: {
             marginBottom: '40px'
@@ -39,7 +40,7 @@ class Hero extends Component {
         return (
             <div id="hero" className="vertical-center" style={styles.hero}>
                 <div className="text-center" style={styles.heading}>
-                    <h1>COMING SOON</h1>
+                    <h1>{this.props.heading}</h1>
                 </div>
             </div>
         );
@@ -71,32 +72,23 @@ class Feature extends Component {
 
 class Landing extends Component {
     render() {
-        const firstLine = {
-            headerLeft: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit?',
-            contentLeft: 'Praesent congue feugiat eros, at rhoncus tellus feugiat rhoncus. Proin elementum nisi non erat imperdiet rutrum. Etiam id rhoncus leo. Nullam rhoncus nisi leo, ut porta dolor malesuada nec. Cras quis nisl tellus.',
-            headerRight: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit?',
-            contentRight: 'Praesent congue feugiat eros, at rhoncus tellus feugiat rhoncus. Proin elementum nisi non erat imperdiet rutrum. Etiam id rhoncus leo. Nullam rhoncus nisi leo, ut porta dolor malesuada nec. Cras quis nisl tellus.'
-        }
+        const locales = this.props.locales.landing;
+        const firstRowLocales = locales.firstRow;
+        const secondRowLocales = locales.secondRow;
         return (
             <div>
-                <Hero />
-                <p>{this.props.locales.heroHeader}</p>
+                <Hero heading={this.props.locales.landing.heroHeader} />
                 <div>
-                    <Feature 
-                        headerLeft={firstLine.headerLeft}
-                        contentLeft={firstLine.contentLeft} 
-                        headerRight={firstLine.headerRight}
-                        contentRight={firstLine.contentRight} />
-                    <Feature 
-                        headerLeft={firstLine.headerLeft}
-                        contentLeft={firstLine.contentLeft} 
-                        headerRight={firstLine.headerRight}
-                        contentRight={firstLine.contentRight} />
-                    <Feature 
-                        headerLeft={firstLine.headerLeft}
-                        contentLeft={firstLine.contentLeft} 
-                        headerRight={firstLine.headerRight}
-                        contentRight={firstLine.contentRight} />
+                    <Feature
+                        headerLeft={firstRowLocales.headerLeft}
+                        contentLeft={firstRowLocales.contentLeft}
+                        headerRight={firstRowLocales.headerRight}
+                        contentRight={firstRowLocales.contentRight} />
+                    <Feature
+                        headerLeft={secondRowLocales.headerLeft}
+                        contentLeft={secondRowLocales.contentLeft}
+                        headerRight={secondRowLocales.headerRight}
+                        contentRight={secondRowLocales.contentRight} />
                 </div>
             </div>
         );
