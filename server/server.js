@@ -1,4 +1,4 @@
-require('babel/register');
+require('babel/register-without-polyfill');
 var boot = require('loopback-boot');
 var app = require('./loopback-server.js');
 boot(app, __dirname, function(err) {
