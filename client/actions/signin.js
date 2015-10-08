@@ -20,7 +20,7 @@ export function doSigninSuccess({ data, history }) {
     console.log('doSigninSuccess');
     console.log('Set cookie', 'Authorization=' + data.id);
     docCookies.setItem('Authorization', data.id);
-    // history.pushState('/');
+    history.pushState('/');
     return {
         type: DO_SIGNIN_SUCCESS,
         data
