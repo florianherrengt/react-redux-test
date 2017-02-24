@@ -21,10 +21,10 @@ describe('React-redux-test', function runTest() {
 	})
 	it('should signup, signin and redirect to the home page', done => {
 		client
-			.setValue('input[name=email]', 'florian@herrengt.fr')
-			.setValue('input[name=password]', 'somepassword')
-			.click('input[type=submit]')
-			.waitForVisible('#hero', 5000)
+			.setValue(email, 'florian@herrengt.fr')
+			.setValue(password, 'somepassword')
+			.click(submit)
+			.waitForVisible(hero, 5000)
 			.call(done);
 	});
 });
